@@ -17,6 +17,12 @@ jal SubA
 
 SubA:
 
+sub $sp, $sp,4 #creates stack space
+sw $a0, 0($sp) #puts input in stack
+lw $t1, 0($sp) # stores the input into $t1
+addi $sp,$sp,4 # moves the stack pointer up
+move $t7, $t0 # stores beginning of input into $t7
+
 SubB:
 
 SubC:
