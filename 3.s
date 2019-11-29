@@ -44,6 +44,15 @@ j run
 loop:
 
 
+lb $s0, ($t1) # loads the bit that $t0 is pointing to
+beq $s0, 0,next# check for null
+beq $s0, 10, next #checks for new line
+addi $t1,$t1,1 #move the $t1 to the next element
+beq $s0, 44, substring #check if bit is a comma
+
+check:
+bgt $t3,0, invalloop #checks to see if I have spaces or tabs between my valid characters:
+
 invalloop:
 
 insidesubstring:
