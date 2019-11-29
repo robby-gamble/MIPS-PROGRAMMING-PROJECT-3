@@ -2,7 +2,7 @@
 
 data: .space 1001
 output: .asciiz"\n"
-notvalid: asciiz "NaN"
+notvalid: .asciiz "NaN"
 comma: .asciiz ","
 
 .text
@@ -10,10 +10,11 @@ main:
 
 li $v0, 8
 la $a0, data #Getting User Input
-li $a1. 1001
+li $a1, 1001
 syscall
 
 jal SubA
+
 
 SubA:
 
@@ -201,7 +202,16 @@ beq $t2, 0, exit #ends program if there arent other values.
 li $v0, 4
 la $a0, comma #prints comma
 syscall
-j done
+j end
+
+invalprint:
+
+li $v0, 4
+la $a0, notvalid #prints not valid symbol
+syscall
+j commas #jumps commas
+
+
 
 
 exit:
