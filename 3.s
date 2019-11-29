@@ -150,5 +150,12 @@ beq $t4, 0, concat    # if no hay chars exponent is zero
 li $t8, 33
 j expon
 
+uppercase:
+sub $s0, $s0, 55    #converts uppercase
+beq $t4, 0, concat    # if no hay chars exponent is zero
+li $t8, 33
+j expon
+
+
 
 
