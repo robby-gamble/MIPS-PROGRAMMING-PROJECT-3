@@ -113,6 +113,12 @@ bge $t4,5,insidesubstring #checks for  more than 4 for characters
 addi $t2,$t2,1 # track of the amount substring
 sub $sp, $sp,4 # creates space in  stack
 sw $t7, 0($sp) #stores $t7 into the stack
+move $t7,$t1  # storing pointer
+lw $t5,0($sp) #load stack at that posistion to $t5
+li $s1,0 #sets $s1 to 0
+jal SubB
+lb $s0, ($t1) # loads the bit that $t0 is pointing to
+
 
 
 
