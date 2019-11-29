@@ -118,17 +118,15 @@ lw $t5,0($sp) #load stack at that posistion to $t5
 li $s1,0 #sets $s1 to 0
 jal SubB
 lb $s0, ($t1) # loads the bit that $t0 is pointing to
+beq $s0, 0, cont1 # check if the bit is null
+beq $s0, 10, cont1 #checks if the bit is a new line
+beq $s0,44, invalloop #checks if the next bit is a comma
+li $t3,0 #resets my space/tabs checker back to zero
+j run
 
 
 
 
-
-
-
-
-li $t3
-
-SubB:
 
 SubC:
 
