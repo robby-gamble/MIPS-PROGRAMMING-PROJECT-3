@@ -138,4 +138,10 @@ sw $s1,0($sp)    #stores the converted number
 j SubB
 
 SubC:
+move $t9, $t4    #stores the amount of characters as an exponent
+li $t8, 1    # $t8 represents 33 to a certian power and set equal to 1
+ble $s0, 57, number #sorts the bit to the apporiate function
+ble $s0, 88, uppercase
+ble $s0, 120, lowercase
+
 
