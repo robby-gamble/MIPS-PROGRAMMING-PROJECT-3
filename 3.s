@@ -144,4 +144,11 @@ ble $s0, 57, number #sorts the bit to the apporiate function
 ble $s0, 88, uppercase
 ble $s0, 120, lowercase
 
+number:
+sub $s0, $s0, 48    #converts interger
+beq $t4, 0, concat    # if no hay chars exponent is zero
+li $t8, 33
+j expon
+
+
 
