@@ -31,8 +31,17 @@ lb $s0, ($t1) # loads the bit that $t0 is pointing to
 beq $s0, 0, insidesubstring# check for null
 beq $s0, 10, insidesubstring #checks for new line
 beq $s0, 44, invalloop #check for comma
+beq $s0, 9, skip # checks for tabs character
+beq $s0, 32, skip #checksc checks for space character
+move $t7, $t1 #stores first non-space/tab character
+j loop # starts loop over
 
 
+skip:
+addi $t1,$t1,1 #move $t1 to the next element
+j run
+
+loop:
 
 
 invalloop:
@@ -47,7 +56,7 @@ sw $t0, 0($sp) #puts $t7 into the stack
 move $t7,$t1  # store the pointer to the bit after the comma
 lb $s0, ($t1) # loads the bit that $t1 is -> to
 
-beq $s0, 0, cont1
+beq $s0, 0, cont1 #
 beq $s0, 10, cont1
 beq $s0,44, invalloop
 li $t4,0 #resets the amount of valid characters to 0
