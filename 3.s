@@ -52,6 +52,15 @@ beq $s0, 44, substring #check if bit is a comma
 
 check:
 bgt $t3,0, invalloop #checks to see if I have spaces or tabs between my valid characters:
+beq $s0, 9,  gap #checks for tab characters
+beq $s0, 32, gap #checks for  space character
+ble $s0, 47, invalidloop # checks for ascii less than 48
+ble $s0, 57, vaild # checks for integers
+ble $s0, 64, invalidloop # checksfor ascii less than 64
+ble $s0, 88, vaild    # checks for my capital letters
+ble $s0, 96, invalidloop # checks for ascii less than 96
+ble $s0, 120, vaild     # checks for lowercase letters
+bge $s0, 121, invalidloop # checks for ascii greater than 120
 
 invalloop:
 
