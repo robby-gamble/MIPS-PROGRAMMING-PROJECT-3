@@ -177,6 +177,22 @@ mul $s2, $t8, $s0    #multiplied the converted value and my raised base
 add $s1,$s1,$s2        # adding the numbers
 j continue
 
+stoprunning:
+
+jr $ra #goes back to substring
+
+print:
+mul $t2,$t2,4 #getting space to move stack pointer
+add $sp, $sp $t2 #pointer is at the beginning of the stack
+
+end:
+
+sub $t2, $t2,4    #keeping track of elements left
+sub $sp,$sp,4 #moving the stack pointer to the next element
+lw $s7, 0($sp)    #storing that element into $s7
+beq $s7,-1,invalprint #checks to see if element is invalid
+
+
 
 
 
