@@ -156,6 +156,16 @@ beq $t4, 0, concat    # if no hay chars exponent is zero
 li $t8, 33
 j expon
 
+lowercase:
+sub $s0, $s0, 87    #converts lowercase
+beq $t4, 0, concat    # if no hay chars exponent is zero
+li $t8, 33
+j expon
+
+expon:
+
+#raise my base to an exponent by multiplying it by itself
+
 
 
 
