@@ -13,4 +13,11 @@ la $a0, data #Getting User Input
 li $a1. 1001
 syscall
 
+jal SubA
+
+SubA:
+
+SubB:
+
+SubC:
 
