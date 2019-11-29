@@ -54,15 +54,38 @@ check:
 bgt $t3,0, invalloop #checks to see if I have spaces or tabs between my valid characters:
 beq $s0, 9,  gap #checks for tab characters
 beq $s0, 32, gap #checks for  space character
-ble $s0, 47, invalidloop # checks for ascii less than 48
-ble $s0, 57, vaild # checks for integers
-ble $s0, 64, invalidloop # checksfor ascii less than 64
-ble $s0, 88, vaild    # checks for my capital letters
-ble $s0, 96, invalidloop # checks for ascii less than 96
-ble $s0, 120, vaild     # checks for lowercase letters
-bge $s0, 121, invalidloop # checks for ascii greater than 120
+ble $s0, 47, invalloop # checks for ascii less than 48
+ble $s0, 57, isvaild # checks for integers
+ble $s0, 64, invalloop # checksfor ascii less than 64
+ble $s0, 88, isvaild    # checks for my capital letters
+ble $s0, 96, invalloop # checks for ascii less than 96
+ble $s0, 120, isvaild     # checks for lowercase letters
+bge $s0, 121, invalloop # checks for ascii greater than 120
+
+gap:
+
+addi $t3,$t3,-1 #tracking spaces/tabs
+j loop
+
+isvalid:
+
+addi $t4, $t4,1 #tracking valid characters
+mul $t3,$t3,$t0 #if there was a space before a valid character it will change $t3 to a positive number
+j loop #jumps to the beginning of loop
+
+
+
 
 invalloop:
+
+lb $s0, ($t1) # loads the bit that $t1 is pointing to
+beq $s0, 0, insidesubstring
+beq $s0, 10, insidesubstring
+addi $t1,$t1,1
+beq $s0, 44, insidesubstring
+
+j invalloop #jumps to the beginning of loop
+
 
 insidesubstring:
 
@@ -80,6 +103,8 @@ beq $s0,44, invalloop
 li $t4,0 #resets the amount of valid characters to 0
 li $t3,0 #resets my space checker  to 0
 j run
+
+
 
 
 
