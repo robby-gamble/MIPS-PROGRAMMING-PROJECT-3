@@ -15,6 +15,8 @@ syscall
 
 jal SubA
 
+cont1:
+j print
 
 SubA:
 
@@ -22,7 +24,7 @@ sub $sp, $sp,4 #creates stack space
 sw $a0, 0($sp) #puts input in stack
 lw $t1, 0($sp) # stores the input into $t1
 addi $sp,$sp,4 # moves the stack pointer up
-move $t7, $t0 # stores beginning of input into $t7
+move $t7, $t1 # stores beginning of input into $t7
 
 run:
 
@@ -56,11 +58,11 @@ bgt $t3,0, invalloop #checks to see if I have spaces or tabs between my valid ch
 beq $s0, 9,  gap #checks for tab characters
 beq $s0, 32, gap #checks for  space character
 ble $s0, 47, invalloop # checks for ascii less than 48
-ble $s0, 57, isvaild # checks for integers
+ble $s0, 57, isvalid # checks for integers
 ble $s0, 64, invalloop # checksfor ascii less than 64
-ble $s0, 88, isvaild    # checks for my capital letters
+ble $s0, 88, isvalid    # checks for my capital letters
 ble $s0, 96, invalloop # checks for ascii less than 96
-ble $s0, 120, isvaild     # checks for lowercase letters
+ble $s0, 120, isvalid     # checks for lowercase letters
 bge $s0, 121, invalloop # checks for ascii greater than 120
 
 gap:
@@ -97,7 +99,6 @@ sw $t0, 0($sp) #puts $t7 into the stack
 
 move $t7,$t1  # store the pointer to the bit after the comma
 lb $s0, ($t1) # loads the bit that $t1 is -> to
-
 beq $s0, 0, cont1 #
 beq $s0, 10, cont1
 beq $s0,44, invalloop
@@ -166,10 +167,10 @@ j expon
 expon:
 
 #raise my base to an exponent by multiplying it by itself
-ble $t9, 1, combine    #if exp  is 1 dont multiply by itself
+ble $t9, 1, concat    #if exp  is 1 dont multiply by itself
 mul $t8, $t8, 33     # multpling my base by itself
 addi $t9, $t9, -1    # decrement the exponent
-j exp
+j expon
 
 
 concat:
