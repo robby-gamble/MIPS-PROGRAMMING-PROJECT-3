@@ -28,14 +28,26 @@ run:
 li $t3,0 #Looking for tabs or spaces
 li $t0, -1 #used for invaild input
 lb $s0, ($t1) # loads the bit that $t0 is pointing to
-beq $s0, 0, invalsubstring# check for null
-beq $s0, 10, invalsubstring #checks for new line
+beq $s0, 0, insidesubstring# check for null
+beq $s0, 10, insidesubstring #checks for new line
 beq $s0, 44, invalloop #check for comma
 
 
-invalsubstring:
+
 
 invalloop:
+
+insidesubstring:
+
+addi $t2,$t2,1 #amount of substring
+sub $sp, $sp,4# creating space in stack
+
+sw $t0, 0($sp) #puts $t7 into the stack
+
+move $t7,$t1  # store the pointer to the bit after the comma
+lb $s0, ($t1) # loads the bit that $t1 is -> to
+
+
 
 
 li $t3
