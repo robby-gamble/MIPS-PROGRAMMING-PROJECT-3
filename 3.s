@@ -165,6 +165,17 @@ j expon
 expon:
 
 #raise my base to an exponent by multiplying it by itself
+ble $t9, 1, combine    #if exp  is 1 dont multiply by itself
+mul $t8, $t8, 33     # multpling my base by itself
+addi $t9, $t9, -1    # decrement the exponent
+j exp
+
+
+concat:
+mul $s2, $t8, $s0    #multiplied the converted value and my raised base
+
+add $s1,$s1,$s2        # adding the numbers
+j continue
 
 
 
